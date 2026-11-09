@@ -9,7 +9,7 @@ const Home = () => {
   const [pizzas, setPizzas] = useState([])
 
   const getData = async () => {
-    const url = 'http://localhost:5000/api/pizzas'
+    const url = `${import.meta.env.VITE_API_URL}/api/pizzas`
     const response = await fetch(url)
     const data = await response.json()
     setPizzas(data)

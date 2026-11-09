@@ -10,7 +10,7 @@ const Pizza = () => {
   const [pizza, setPizza] = useState(null)
 
   const fetchPizza = async () => {
-    const url = 'http://localhost:5000/api/pizzas/p001'
+    const url = `${import.meta.env.VITE_API_URL}/api/pizzas/p001`
     const response = await fetch(url)
     const data = await response.json()
     setPizza(data)

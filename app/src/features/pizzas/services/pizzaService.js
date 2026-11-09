@@ -1,5 +1,4 @@
-
-const API_URL = "http://localhost:5000/api/pizzas";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/pizzas`;
 
 export const getPizzas = async (signal) => {
   const response = await fetch(API_URL, { signal });
