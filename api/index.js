@@ -10,7 +10,7 @@ const app = express();
 
 const allowedOrigins = [
   "https://app-mammamia.levantecode.com",
-  "http://mammamia-app-0po4eg-83fe6a-192-168-1-101.sslip.io/",
+  "http://mammamia-app-0po4eg-83fe6a-192-168-1-101.sslip.io",
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
