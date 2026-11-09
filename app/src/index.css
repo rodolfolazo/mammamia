@@ -1,0 +1,74 @@
+/* Variables globales */
+:root {
+  --primary: #2563eb;
+  --font-base: system-ui, sans-serif;
+  --font-heading: 'Google Sans', var(--font-base);
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos base */
+body {
+  font-family: var(--font-base);
+  background: #f3f4f6;
+  color: #111;
+}
+
+/* Contenedor de la app */
+#root {
+  padding: 0;
+}
+
+.header {
+  font-family: var(--font-heading);
+  background-image: var(--bg-image);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+}
+
+/* Overlay */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* opacidad */
+  z-index: 0;
+}
+
+/* Asegurar que el texto quede encima */
+.header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-pizza__image {
+  height: 250px;
+  object-fit: cover;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* espacio entre icono y texto */
+}
+
+.cart-pizza__image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
