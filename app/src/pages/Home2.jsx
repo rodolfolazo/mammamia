@@ -3,10 +3,10 @@ import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import heroImage from "../assets/header.jpg";
 import Header from "../features/home/components/Header";
 import CardPizza from "../features/pizzas/components/CardPizza";
-import { usePizzas } from "../features/pizzas/hooks/usePizzas";
+import { usePizzasContext2 } from "../features/pizzas/hooks/usePizzasContext2";
 
 const Home2 = () => {
-  const { pizzas, loading, error } = usePizzas();
+  const { pizzas, loading, error } = usePizzasContext2();
 
   return (
     <div className="flex-fill">

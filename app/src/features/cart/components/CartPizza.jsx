@@ -1,10 +1,12 @@
+import PropTypes from "prop-types";
+
 import { Row, Col, Card, Form, Button } from "react-bootstrap";
 import { utils } from "../../../utils";
 
 const CartPizza = ({ desc, id, img, ingredients, name, price, quantity, handleAdd, handleSubtract, handleRemove, handleUpdateQuantity }) => {
   return (
     <>
-      <Row className="align-items-center g-3 border border-dark border-2 rounded-3 p-1 mb-3" style={{ marginTop: 0 }}>
+      <Row className="align-items-center g-3 border border-dark border-2 rounded-3 p-1 my-3" style={{ marginTop: 0 }}>
 
         {/* Imagen */}
         <Col xs={12} md={3} style={{ marginTop: 0 }}>
@@ -60,6 +62,20 @@ const CartPizza = ({ desc, id, img, ingredients, name, price, quantity, handleAd
       </Row>
     </>
   );
+};
+
+CartPizza.propTypes = {
+  desc: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  handleAdd: PropTypes.func.isRequired,
+  handleSubtract: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
+  handleUpdateQuantity: PropTypes.func.isRequired,
 };
 
 export default CartPizza;

@@ -1,3 +1,7 @@
+import { useContext } from 'react'
+import { CartContext } from '../../features/cart/context/CartContext'
+
+
 import { Link, NavLink } from 'react-router'
 
 import Container from 'react-bootstrap/Container'
@@ -13,7 +17,7 @@ import { BsCart4 } from 'react-icons/bs'
 import { CiLock } from 'react-icons/ci'
 
 const MyNavbar = () => {
-  const total = 25000
+  const { total } = useContext(CartContext)
   const token = false
 
   return (

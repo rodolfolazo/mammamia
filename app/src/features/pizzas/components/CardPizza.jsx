@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { CartContext } from "../../../features/cart/context/CartContext";
+
+
 import PropTypes from "prop-types";
 
 import Button from 'react-bootstrap/Button'
@@ -8,7 +12,23 @@ import { FaPizzaSlice } from "react-icons/fa";
 
 import { utils } from '../../../utils/index'
 
-const CardPizza = ({ name, price, img,ingredients }) => {
+const CardPizza = ({ id,name, price, img, ingredients }) => {
+  const { cart, setCart } = useContext(CartContext);
+
+  const handleAddToCart = (id) => {
+    const existingItem = cart.find((item) => item.id === id);
+
+    if (existingItem) {
+      const updatedCart = cart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCart(updatedCart);
+    } else {
+      const updatedCart = [...cart, { id, name, price, img, ingredients, quantity: 1 }];
+      setCart(updatedCart);
+    }
+  };
+
   return (
     <>
       <Card className="card-pizza">
@@ -29,7 +49,7 @@ const CardPizza = ({ name, price, img,ingredients }) => {
           <Button variant="light" className="text-dark border">
             Ver más
           </Button>
-          <Button variant="dark" className="text-white border">
+          <Button variant="dark" className="text-white border" onClick={() => handleAddToCart(id)}>
             Añadir
           </Button>
         </div>

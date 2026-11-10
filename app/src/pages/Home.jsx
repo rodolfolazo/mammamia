@@ -1,27 +1,14 @@
+import { useContext } from 'react'
+import { PizzasContext } from '../features/pizzas/context/PizzasContext'
+
+
 import { Container, Row, Col } from "react-bootstrap";
 import heroImage from '../assets/header.jpg'
 import Header from '../features/home/components/Header'
 import CardPizza from '../features/pizzas/components/CardPizza'
 
-import { useState, useEffect } from 'react'
-
 const Home = () => {
-  const [pizzas, setPizzas] = useState([])
-
-  const getData = async () => {
-    const url = `${import.meta.env.VITE_API_URL}/api/pizzas`
-    const response = await fetch(url)
-    const data = await response.json()
-    setPizzas(data)
-  }
-
-  useEffect(() => {
-    getData()
-  }, [])
-
-  useEffect(() => {
-    console.log(pizzas)
-  }, [pizzas])
+  const { pizzas } = useContext(PizzasContext)
 
   return (
     <div className="flex-fill">
