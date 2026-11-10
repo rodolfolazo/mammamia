@@ -1,3 +1,5 @@
+import { ToastContainer, Bounce } from "react-toastify";
+
 import Cart from './pages/Cart'
 import Home from './pages/Home'
 //import Home2 from './pages/Home2'
@@ -16,6 +18,7 @@ import './App.css'
 
 function App() {
   return (
+    <>
     <Routes>
         {/*Por ahora son rutas públicas*/}
         <Route element={<MainLayout />}>
@@ -25,10 +28,20 @@ function App() {
           <Route path="/register" element={<Register></Register>} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/pizza/001" element={<Pizza />} />
+          <Route path="/pizzas/:id" element={<Pizza />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+        closeOnClick={true}
+        transition={Bounce}
+        theme="colored"
+      />
+    </>
   )
 }
 

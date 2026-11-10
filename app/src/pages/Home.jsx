@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { PizzasContext } from '../features/pizzas/context/PizzasContext'
+import { CartContext } from '../features/cart/context/CartContext'
 
 
 import { Container, Row, Col } from "react-bootstrap";
@@ -9,6 +10,16 @@ import CardPizza from '../features/pizzas/components/CardPizza'
 
 const Home = () => {
   const { pizzas } = useContext(PizzasContext)
+  const { cart, setTotal } = useContext(CartContext)
+
+  //Calculamos el total a partir del estado actual
+  const totalPrice = cart.reduce(
+    (acc, pizza) => acc + pizza.price * pizza.quantity,
+    0
+  );
+
+  setTotal(totalPrice)
+
 
   return (
     <div className="flex-fill">

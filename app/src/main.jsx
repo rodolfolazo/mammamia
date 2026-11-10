@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router'
 import AppProvider from './providers/AppProvider'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-toastify/dist/ReactToastify.css";
 import './index.css'
 
 import App from './App.jsx'

@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { useNavigate } from "react-router"
 import { CartContext } from "../features/cart/context/CartContext.jsx"
 
 import CartPizza from "../features/cart/components/CartPizza.jsx"
@@ -8,6 +9,7 @@ import { Container, Row, Col, Button } from "react-bootstrap"
 
 const Cart = () => {
   const { cart, setCart, total, setTotal } = useContext(CartContext)
+  const navigate = useNavigate()
 
   const handleAdd = (id) => {
     const updatedPizzas = cart.map((p) =>
@@ -39,6 +41,12 @@ const Cart = () => {
     setCart(updatedPizzas)
   }
 
+  const handleClearCart = () => {
+    setCart([])
+    setTotal(0)
+    navigate("/")
+  }
+
   // Calculamos el total a partir del estado actual
     const totalPrice = cart.reduce(
       (acc, pizza) => acc + pizza.price * pizza.quantity,
@@ -67,7 +75,7 @@ const Cart = () => {
             </Button>
           </Col>
           <Col className="text-center" md={2}>
-            <Button variant="secondary">
+            <Button variant="secondary" onClick={handleClearCart}>
               Cancelar compra
             </Button>
           </Col>

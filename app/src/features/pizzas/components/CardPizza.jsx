@@ -1,8 +1,10 @@
 import { useContext } from "react";
-import { CartContext } from "../../../features/cart/context/CartContext";
-
+import { useNavigate } from "react-router";
 
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+
+import { utils } from '../../../utils/index'
 
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -10,12 +12,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import { FaPizzaSlice } from "react-icons/fa";
 
-import { utils } from '../../../utils/index'
+import { CartContext } from "../../../features/cart/context/CartContext";
 
-const CardPizza = ({ id,name, price, img, ingredients }) => {
+
+const CardPizza = ({ id, name, price, img, ingredients }) => {
+
   const { cart, setCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleAddToCart = (id) => {
+    toast.success(`${name} añadida al carrito`);
+
     const existingItem = cart.find((item) => item.id === id);
 
     if (existingItem) {
@@ -28,6 +35,10 @@ const CardPizza = ({ id,name, price, img, ingredients }) => {
       setCart(updatedCart);
     }
   };
+
+ const handleVerMas = (id) => {
+    navigate(`/pizzas/${id}`);
+ };
 
   return (
     <>
@@ -46,7 +57,7 @@ const CardPizza = ({ id,name, price, img, ingredients }) => {
           <Card.Subtitle>Precio: {utils.formatCurrency(price)}</Card.Subtitle>
         </div>
         <div className="border-bottom p-2 d-flex justify-content-around">
-          <Button variant="light" className="text-dark border">
+          <Button variant="light" className="text-dark border" onClick={() => handleVerMas(id)}>
             Ver más
           </Button>
           <Button variant="dark" className="text-white border" onClick={() => handleAddToCart(id)}>
@@ -59,6 +70,8 @@ const CardPizza = ({ id,name, price, img, ingredients }) => {
 }
 
 CardPizza.propTypes = {
+  id: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   ingredients: PropTypes.string.isRequired,
