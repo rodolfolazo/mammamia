@@ -1,6 +1,6 @@
 import Cart from './pages/Cart'
-//import Home from './pages/Home'
-import Home2 from './pages/Home2'
+import Home from './pages/Home'
+//import Home2 from './pages/Home2'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Pizza from './pages/Pizza'
@@ -19,8 +19,8 @@ function App() {
     <Routes>
         {/*Por ahora son rutas públicas*/}
         <Route element={<MainLayout />}>
-          <Route index element={<Home2 />} />
-          {/*<Route index element={<Home />} /> */}
+          <Route index element={<Home />} />
+          {/*<Route index element={<Home2 />} /> */}
           <Route path="/login" element={<Login></Login>} />
           <Route path="/register" element={<Register></Register>} />
           <Route path="/profile" element={<Profile />} />
