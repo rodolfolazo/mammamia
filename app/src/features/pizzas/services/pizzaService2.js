@@ -9,3 +9,13 @@ export const getPizzas = async (signal) => {
 
   return response.json();
 };
+
+export const getPizzaById = async (id, signal) => {
+  const response = await fetch(`${API_URL}/${id}`, { signal });
+
+  if (!response.ok) {
+    throw new Error("Error al obtener la pizza");
+  }
+
+  return response.json();
+};

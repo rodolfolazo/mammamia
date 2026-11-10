@@ -8,6 +8,8 @@ import Login from './pages/Login'
 import Pizza from './pages/Pizza'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
+import Pizza2 from './pages/Pizza2'
+import Pizza3 from "./pages/Pizza3";
 import MainLayout from './layouts/MainLayout'
 
 
@@ -29,6 +31,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/pizzas/:id" element={<Pizza />} />
+          <Route path="/pizzas2/:id" element={<Pizza2 />} />
+          <Route path="/pizzas3/:id" element={<Pizza3 />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
