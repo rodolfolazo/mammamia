@@ -8,8 +8,11 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
+Tengo 2 componentes Home
+Home
 Home2 es la versión optimizada
 
-Lo mismo será en el futuro para:
-Cart2
-Pizza2
+Tegno 3 versiones Pizza
+Pizza es la versión spaguetti
+Pizza2 no hace uso de fetch. Utiliza el array de pizzas que ya está en el contexto y con el id ubica la pizza
+Pizza3 hace uso de fetch
