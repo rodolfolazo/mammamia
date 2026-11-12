@@ -1,6 +1,5 @@
-import { useContext } from 'react'
-import { CartContext } from '../../features/cart/context/CartContext'
-
+import { useCartContext } from '../../features/cart/hooks/useCartContext'
+import { useAuthContext } from '../../features/auth/hooks/useAuthContext'
 
 import { Link, NavLink } from 'react-router'
 
@@ -17,8 +16,9 @@ import { BsCart4 } from 'react-icons/bs'
 import { CiLock } from 'react-icons/ci'
 
 const MyNavbar = () => {
-  const { total } = useContext(CartContext)
-  const token = false
+
+  const { total } = useCartContext()
+  const { token ,logout } = useAuthContext()
 
   return (
     <>
@@ -32,7 +32,7 @@ const MyNavbar = () => {
               <NavLink className="text-white text-decoration-none nav-link" to="/profile"><CgProfile /> Profile</NavLink>
             )}
             {token && (
-              <NavLink className="text-white text-decoration-none nav-link" to="/logout"><AiOutlineLogout /> Logout</NavLink>
+              <NavLink onClick={logout} className="text-white text-decoration-none nav-link" to="/login"><AiOutlineLogout /> Logout</NavLink>
             )}
             {!token && (
               <NavLink className="text-decoration-none nav-link" to="/login"><IoMdLogIn /> Login</NavLink>

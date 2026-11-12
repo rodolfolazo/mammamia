@@ -12,13 +12,14 @@ import Pizza2 from './pages/Pizza2'
 import Pizza3 from "./pages/Pizza3";
 import MainLayout from './layouts/MainLayout'
 
-
-
-import { Routes, Route } from 'react-router'
+import { useAuthContext } from "./features/auth/hooks/useAuthContext";
+import { Routes, Route, Navigate } from 'react-router'
 
 import './App.css'
 
 function App() {
+  const { token } = useAuthContext()
+
   return (
     <>
     <Routes>
@@ -26,9 +27,9 @@ function App() {
         <Route element={<MainLayout />}>
           <Route index element={<Home />} />
           {/*<Route index element={<Home2 />} /> */}
-          <Route path="/login" element={<Login></Login>} />
-          <Route path="/register" element={<Register></Register>} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/login" element={(!token) ? <Login></Login> : <Navigate to="/" />} />
+          <Route path="/register" element={(!token) ? <Register></Register> : <Navigate to="/" />} />
+          <Route path="/profile" element={(token)? <Profile /> : <Navigate to="/login" />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/pizzas/:id" element={<Pizza />} />
           <Route path="/pizzas2/:id" element={<Pizza2 />} />

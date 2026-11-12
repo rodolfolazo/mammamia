@@ -1,6 +1,9 @@
-import { useContext } from "react"
+//import { useContext } from "react"
+//import { CartContext } from "../features/cart/context/CartContext.jsx"
 import { useNavigate } from "react-router"
-import { CartContext } from "../features/cart/context/CartContext.jsx"
+import { useCartContext } from "../features/cart/hooks/useCartContext"
+import { useAuthContext } from "../features/auth/hooks/useAuthContext"
+
 
 import CartPizza from "../features/cart/components/CartPizza.jsx"
 import { utils } from "../utils/index.js"
@@ -8,7 +11,11 @@ import { utils } from "../utils/index.js"
 import { Container, Row, Col, Button } from "react-bootstrap"
 
 const Cart = () => {
-  const { cart, setCart, total, setTotal } = useContext(CartContext)
+
+  const { cart, setCart, total, setTotal } = useCartContext()
+  const { token } = useAuthContext()
+
+
   const navigate = useNavigate()
 
   const handleAdd = (id) => {
@@ -69,11 +76,13 @@ const Cart = () => {
           </Col>
         </Row>
         <Row className="d-flex justify-content-center">
-          <Col className="text-center" md={2}>
-            <Button variant="dark">
-              Finalizar compra
-            </Button>
-          </Col>
+          {token &&
+            <Col className="text-center" md={2}>
+              <Button variant="dark">
+                Realizar compra
+              </Button>
+            </Col>
+          }
           <Col className="text-center" md={2}>
             <Button variant="secondary" onClick={handleClearCart}>
               Cancelar compra
