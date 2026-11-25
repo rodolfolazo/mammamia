@@ -1,104 +1,99 @@
-import { useState } from "react";
-import { Form, Button, Container, Row, Col, Modal } from 'react-bootstrap';
+import {  Form,   Button,   Container,   Row,   Col,   Modal,   Spinner, } from "react-bootstrap";
 
-const Register = () => {
-  const initialState = {
-    email: "",
-    password: ""
-  };
-  const [formData, setFormData] = useState(initialState);
-  const [error, setError] = useState(false);
-  const [mensaje, setMensaje] = useState("");
+import { useLogin } from "../features/auth/hooks/useLogin";
 
-  const handleChange = (e) => {
-    const { name, value} = e.target
-    setFormData((prevData) => ({...prevData, [name]: value}))
-  };
+const Login = () => {
+  const { email, password, loading, error, handleSubmit, clearError } = useLogin();
 
-  const validateForm = (e) => {
-    e.preventDefault();
-
-    // Validar que los campos no estén vacíos
-    const {email, password} = formData;
-    const emptyFields = [];
-    if (!email) emptyFields.push("email");
-    if (!password) emptyFields.push("password");
-
-    if (emptyFields.length > 0) {
-      setError(true);
-      setMensaje(`Los siguientes campos son obligatorios: ${emptyFields.join(", ")}`);
-      return;
-    }
-
-    // Si todo está bien, enviar el formulario
-    setError(false);
-    setMensaje("");
-    console.log(formData);
-    setFormData(initialState);
-
-
-  };
   return (
-    <>
-      <Container className="mt-5">
-        <h1 className="text-center mb-4">Login</h1>
+    <Container className="mt-5">
+      <h1 className="text-center mb-4">Login</h1>
 
-        <Modal
-                show={error}
-                onHide={() => setError(false)}
-                centered
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title>Error de validación</Modal.Title>
-                </Modal.Header>
+      <Modal
+        show={!!error}
+        onHide={clearError}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Error de autenticación
+          </Modal.Title>
+        </Modal.Header>
 
-                <Modal.Body>
-                  {mensaje}
-                </Modal.Body>
+        <Modal.Body>
+          {error}
+        </Modal.Body>
 
-                <Modal.Footer>
-                  <Button
-                    variant="secondary"
-                    onClick={() => setError(false)}
-                  >
-                    Cerrar
-                  </Button>
-                </Modal.Footer>
-              </Modal>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={clearError}
+          >
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-        <Form onSubmit={validateForm}>
+      <Form onSubmit={handleSubmit}>
+        <Row className="justify-content-center">
+          <Col className="text-center" md={6}>
+            <Form.Label htmlFor="email">
+              Email
+            </Form.Label>
 
+            <Form.Control
+              id="email"
+              type="email"
+              name="email"
+              value={email.value}
+              onChange={email.onChange}
+              className="mb-4"
+              autoComplete="email"
+              disabled={loading}
+              required
+            />
+          </Col>
+        </Row>
 
-          {Object.keys(initialState).map((campo) => (
-            <Row className="form-group justify-content-center" key={campo}>
-              <Col className="text-center"md={6}>
-                <Form.Label htmlFor={campo}>{
-                  campo.charAt(0).toUpperCase() + campo.slice(1)
-                }</Form.Label>
-                <Form.Control
-                  id={campo}
-                  type={
-                    campo === "email"
-                      ? "email"
-                      : "password"
-                  }
-                  name={campo}
-                  value={formData[campo]}
-                  onChange={handleChange}
-                  className="form-control mb-4"
+        <Row className="justify-content-center">
+          <Col className="text-center" md={6}>
+            <Form.Label htmlFor="password">
+              Password
+            </Form.Label>
+
+            <Form.Control
+              id="password"
+              type="password"
+              name="password"
+              value={password.value}
+              onChange={password.onChange}
+              className="mb-4"
+              autoComplete="current-password"
+              disabled={loading}
+              required
+            />
+          </Col>
+        </Row>
+
+        <div className="text-center mb-4">
+          <Button type="submit" disabled={loading}>
+            {loading ? (
+              <>
+                <Spinner
+                  animation="border"
+                  size="sm"
+                  className="me-2"
                 />
-              </Col>
-            </Row>
-          ))}
-
-          <div className="text-center mb-4">
-            <Button type="submit">Enviar</Button>
-          </div>
-        </Form>
-
-      </Container>
-    </>
+                Iniciando sesión...
+              </>
+            ) : (
+              "Enviar"
+            )}
+          </Button>
+        </div>
+      </Form>
+    </Container>
   );
 };
 
-export default Register;
+export default Login;

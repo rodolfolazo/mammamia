@@ -18,7 +18,7 @@ import { CiLock } from 'react-icons/ci'
 const MyNavbar = () => {
 
   const { total } = useCartContext()
-  const { token ,logout } = useAuthContext()
+  const { isAuthenticated, logoutUser } = useAuthContext()
 
   return (
     <>
@@ -28,16 +28,16 @@ const MyNavbar = () => {
           <Nav className="me-auto">
             <NavLink className="text-white text-decoration-none nav-link" to="/"><IoHomeOutline /> Home</NavLink>
 
-            {token && (
+            {isAuthenticated && (
               <NavLink className="text-white text-decoration-none nav-link" to="/profile"><CgProfile /> Profile</NavLink>
             )}
-            {token && (
-              <NavLink onClick={logout} className="text-white text-decoration-none nav-link" to="/login"><AiOutlineLogout /> Logout</NavLink>
+            {isAuthenticated && (
+              <NavLink onClick={logoutUser} className="text-white text-decoration-none nav-link" to="/login"><AiOutlineLogout /> Logout</NavLink>
             )}
-            {!token && (
+            {!isAuthenticated && (
               <NavLink className="text-decoration-none nav-link" to="/login"><IoMdLogIn /> Login</NavLink>
             )}
-            {!token && (
+            {!isAuthenticated && (
               <NavLink className="text-decoration-none nav-link" to="/register"><CiLock /> Register</NavLink>
             )}
           </Nav>

@@ -1,0 +1,69 @@
+[
+  {
+    "label": "APP: Iniciar React",
+    "command": "npm",
+    "args": ["run", "dev"],
+    "cwd": "$ZED_WORKTREE_ROOT/app",
+    "use_new_terminal": true,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "API: Iniciar Node",
+    "command": "npm",
+    "args": ["run", "dev"],
+    "cwd": "$ZED_WORKTREE_ROOT/api",
+    "use_new_terminal": true,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "APP: Instalar dependencias",
+    "command": "npm",
+    "args": ["install"],
+    "cwd": "$ZED_WORKTREE_ROOT/app"
+  },
+  {
+    "label": "API: Instalar dependencias",
+    "command": "npm",
+    "args": ["install"],
+    "cwd": "$ZED_WORKTREE_ROOT/api"
+  },
+  {
+    "label": "COM: Instalar dependencias",
+    "command": "npm",
+    "args": ["install"],
+    "cwd": "$ZED_WORKTREE_ROOT/com"
+  },
+  {
+    "label": "APP: Build",
+    "command": "npm",
+    "args": ["run", "build"],
+    "cwd": "$ZED_WORKTREE_ROOT/app"
+  },
+  {
+    "label": "HTTP: Ejecutar peticion actual",
+    "command": "httpyac",
+    "args": [
+      "send",
+      "--line",
+      "$ZED_ROW",
+      "$ZED_FILE"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT/api",
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "HTTP: Ejecutar todas",
+    "command": "httpyac",
+    "args": [
+      "send",
+      "--all",
+      "$ZED_FILE"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT/api",
+    "reveal": "always",
+    "hide": "never"
+  }
+]

@@ -7,7 +7,12 @@ const PizzasProvider = ({ children }) => {
 
   const getData = async () => {
     const url = `${import.meta.env.VITE_API_URL}/api/pizzas`
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
     const data = await response.json()
     setPizzas(data)
   }

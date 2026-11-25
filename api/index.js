@@ -8,6 +8,8 @@ import pizzaRoute from "./routes/pizza.route.js";
 
 const app = express();
 
+app.use(express.json());
+
 const allowedOrigins = [
   "https://app-mammamia.levantecode.com",
   "http://mammamia-app-0po4eg-83fe6a-192-168-1-101.sslip.io",

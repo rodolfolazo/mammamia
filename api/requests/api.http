@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:3000/api
+
+### Login usuario
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "123123"
+}
+
+### Obtener info del usuario
+# @name obtenerUsuario
+# @ref login
+GET {{baseUrl}}/auth/me
+Accept: application/json
+Authorization: Bearer {{login.token}}
+
+### Obtener todas las pizzas
+# @name obtenerPizzas
+GET {{baseUrl}}/pizzas
+Accept: application/json
+
+### Obtener pizza por id
+# @name obtenerPizza
+GET {{baseUrl}}/pizzas/p001
+Accept: application/json
